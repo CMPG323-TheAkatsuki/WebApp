@@ -19,9 +19,9 @@ const AssignmentSchema = mongoose.Schema(
                 required: true
                 
             },
-            lecturer: { // Store the user_number instead of ObjectId
+            lecturer_id: { // Store the user_number instead of ObjectId
                 type: mongoose.Schema.Types.String,
-                ref: 'User',
+                ref: 'Module',
                 required: true
             }    
         

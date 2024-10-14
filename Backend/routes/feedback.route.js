@@ -1,6 +1,8 @@
 const express = require('express');
+const Feedback = require('../models/feedback.model.js'); // Import Feedback model
+const Module = require('../models/module.model.js'); // Import Module model
+
 const router = express.Router();
-const Submission = require('../models/submission.model'); // Importing the Submission model
 
 // Middleware to check for roles
 function authorizeRoles(...roles) {
@@ -13,92 +15,144 @@ function authorizeRoles(...roles) {
     };
 }
 
-// Get all submissions (accessible by admin only)
-router.get('/', authorizeRoles('admin'), async (req, res) => {
+// Route to get all feedback (accessible by admin only)
+router.get('/all', authorizeRoles('admin'), async (req, res) => {
     try {
-        const submissions = await Submission.find().populate('assignment_id').populate('submitter_id');
-        res.status(200).json(submissions);
+        const feedback = await Feedback.find({}); // Fetch all feedback from the database
+        res.status(200).json(feedback); // Send back the feedback as a JSON response
+    } catch (error) {
+        res.status(500).json({ message: error.message }); // Handle any errors
+    }
+});
+
+// Route to get feedback for a specific module by module code (accessible by admin and student)
+router.get('/module/:module', authorizeRoles('admin', 'lecturer'), async (req, res) => {
+    try {
+        const { module } = req.params; // Get the module code from the route parameters
+
+        // Find all feedback related to the given module
+        const feedback = await Feedback.find({ module: module })
+            .populate('assignment_id', 'assignment_name description due_date'); // Populate assignment details
+
+        if (!feedback || feedback.length === 0) {
+            return res.status(404).json({ message: "No feedback found for this module" });
+        }
+
+        res.status(200).json(feedback);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Get a specific submission by ID (accessible by admin and the submitter)
-router.get('/:id', authorizeRoles('admin', 'lecturer'), async (req, res) => {
+// Route to get feedback for a specific student by student ID (string)
+// Change the endpoint to /myfeedback
+router.get('/myfeedback', authorizeRoles('admin', 'student'), async (req, res) => {
     try {
-        const submission = await Submission.findById(req.params.id).populate('assignment_id').populate('submitter_id');
+        // Get the student's user_number from the authenticated user (req.user)
+        const student = req.user.user_number;
+
+        // Find all feedback entries for the logged-in student
+        const feedback = await Feedback.find({ student: student })
+            .populate('assignment_id', 'assignment_name description due_date') // Populate assignment details
+            .populate('module', 'module') // Populate module details (only if you want specific fields)
+            .exec(); // Execute the query
+
+        if (!feedback || feedback.length === 0) {
+            return res.status(404).json({ message: "No feedback found for this student" });
+        }
+
+        res.status(200).json(feedback);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+
+// Route to get feedback by year level (accessible by admin only)
+router.get('/year/:year_level', authorizeRoles('admin'), async (req, res) => {
+    try {
+        const { year_level } = req.params;
+        const yearLevelInt = parseInt(year_level); // Convert year_level to integer
+
+        // Fetch modules for the specified year level
+        const modules = await Module.find({ year_level: yearLevelInt });
+
+        if (!modules || modules.length === 0) {
+            return res.status(404).json({ message: "No modules found for the specified year level" });
+        }
+
+        // Get all feedback for the modules found
+        const feedback = await Feedback.find({ module: { $in: modules.map(module => module.module) } })
+            .populate('assignment_id', 'assignment_name description'); // Populate assignment information
+
+        if (!feedback || feedback.length === 0) {
+            return res.status(404).json({ message: "No feedback found for this year level" });
+        }
+
+        res.status(200).json(feedback);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
+// Route to get a specific feedback by ID (accessible by admin and student)
+router.get('/:id', authorizeRoles('admin', 'student'), async (req, res) => {
+    try {
+        const { id } = req.params;
         
-        // Ensure the user is either admin or the one who submitted this submission
-        if (!submission || (req.user.role === 'student' && submission.submitter_id.toString() !== req.user._id.toString())) {
-            return res.status(403).json({ message: 'Access denied' });
+        const feedback = await Feedback.findById(id)
+            .populate('assignment_id', 'assignment_name description due_date')  // Populate assignment details
+            .populate('module', 'module_name'); // Populate module details
+
+        if (!feedback) {
+            return res.status(404).json({ message: "Feedback not found" });
         }
 
-        res.status(200).json(submission);
+        res.status(200).json(feedback);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Add a new submission (accessible by students and admins)
-router.post('/add', authorizeRoles('student', 'admin'), async (req, res) => {
+// Route to add feedback (accessible by admin only)
+router.post('/add', authorizeRoles('admin', 'lecturer'), async (req, res) => {
     try {
-        const { assignment_id, videoUrl, videoFileName, videoFileType, videoSize, submitter_id } = req.body;
-
-        // Create a new Submission
-        const submission = new Submission({
-            assignment_id,
-            videoUrl,
-            videoFileName,
-            videoFileType,
-            videoSize,
-            submitter_id
-        });
-
-        // Save the submission to the database
-        await submission.save();
-        res.status(201).json(submission);
+        const feedback = await Feedback.create(req.body); // Create a new feedback entry
+        res.status(201).json(feedback); // Respond with the created feedback
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Update a submission by ID (accessible by the submitter and admin)
-router.put('/update/:id', authorizeRoles('student', 'admin'), async (req, res) => {
+// Route to update feedback by ID (accessible by admin only)
+router.put('/update/:id', authorizeRoles('admin', 'lecturer'), async (req, res) => {
     try {
-        const { assignment_id, videoUrl, videoFileName, videoFileType, videoSize, submitter_id } = req.body;
+        const { id } = req.params;
+
+        const updatedFeedback = await Feedback.findByIdAndUpdate(id, req.body, { new: true }); // Update feedback
         
-        const submission = await Submission.findById(req.params.id);
-
-        // Ensure the user is either admin or the one who submitted this submission
-        if (!submission || (req.user.role === 'student' && submission.submitter_id.toString() !== req.user._id.toString())) {
-            return res.status(403).json({ message: 'Access denied' });
+        if (!updatedFeedback) {
+            return res.status(404).json({ message: "Feedback not found" });
         }
-
-        // Update submission
-        const updatedSubmission = await Submission.findByIdAndUpdate(
-            req.params.id,
-            { assignment_id, videoUrl, videoFileName, videoFileType, videoSize, submitter_id },
-            { new: true, runValidators: true }
-        );
-
-        if (!updatedSubmission) {
-            return res.status(404).json({ message: 'Submission not found' });
-        }
-
-        res.status(200).json(updatedSubmission);
+        
+        res.status(200).json(updatedFeedback);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Delete a submission by ID (accessible by admin only)
+// Route to delete feedback by ID (accessible by admin only)
 router.delete('/delete/:id', authorizeRoles('admin'), async (req, res) => {
     try {
-        const submission = await Submission.findByIdAndDelete(req.params.id);
-        if (!submission) {
-            return res.status(404).json({ message: 'Submission not found' });
+        const { id } = req.params;
+
+        const deletedFeedback = await Feedback.findByIdAndDelete(id);
+        
+        if (!deletedFeedback) {
+            return res.status(404).json({ message: "Feedback not found" });
         }
-        res.status(200).json({ message: 'Submission deleted' });
+        
+        res.status(200).json({ message: "Feedback deleted successfully", feedback: deletedFeedback });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

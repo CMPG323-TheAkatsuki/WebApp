@@ -52,3 +52,16 @@
 {"level":"error","message":"JWT verification failed: invalid token"}
 {"level":"error","message":"JWT verification failed: jwt expired"}
 {"level":"error","message":"JWT verification failed: jwt expired"}
+{"level":"error","message":"Connection failed: Password cannot be empty"}
+{"level":"error","message":"JWT verification failed: jwt must be provided"}
+{"level":"error","message":"JWT verification failed: invalid signature"}
+{"level":"error","message":"JWT verification failed: invalid signature"}
+{"level":"error","message":"JWT verification failed: invalid signature"}
+{"level":"error","message":"JWT verification failed: jwt must be provided"}
+{"level":"error","message":"SyntaxError: Unexpected token \n in JSON at position 51\n    at JSON.parse (<anonymous>)\n    at parse (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\body-parser\\lib\\types\\json.js:92:19)\n    at C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\body-parser\\lib\\read.js:128:18\n    at AsyncResource.runInAsyncScope (node:async_hooks:202:9)\n    at invokeCallback (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\raw-body\\index.js:238:16)\n    at done (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\raw-body\\index.js:227:7)\n    at IncomingMessage.onEnd (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\raw-body\\index.js:287:7)\n    at IncomingMessage.emit (node:events:539:35)\n    at endReadableNT (node:internal/streams/readable:1345:12)\n    at processTicksAndRejections (node:internal/process/task_queues:83:21)"}
+{"level":"error","message":"JWT verification failed: jwt must be provided"}
+{"level":"error","message":"JWT verification failed: jwt expired"}
+{"level":"error","message":"JWT verification failed: jwt expired"}
+{"level":"error","message":"JWT verification failed: jwt expired"}
+{"level":"error","message":"JWT verification failed: invalid token"}
+{"level":"error","message":"Connection failed: Password cannot be empty"}

@@ -15,8 +15,8 @@ const ModuleSchema = mongoose.Schema(
                 required: true
               
             },
-            lecturer: {
-                type: mongoose.Schema.Types.ObjectId,
+            lecturer_id: {
+                type: mongoose.Schema.Types.String,
                 ref: 'User',
                 required: true
             },
