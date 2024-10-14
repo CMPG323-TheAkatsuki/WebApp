@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment Submissions</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: skyblue; 
+        }
+        h1 {
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .table-container {
+            margin-top: 40px;
+        }
+        th, td {
+            text-align: center;
+        }
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #080808;
+        }
+        .home-icon img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Home icon that redirects to the landing page -->
+    <a href="Landing Page.html" class="home-icon">
+        <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home">
+    </a>
+
+    <div class="container">
+        <h1>Assignment Submissions</h1>
+
+        <!-- Form to select year, module, and assignment -->
+        <form>
+            <div class="mb-3">
+                <label for="yearSelect" class="form-label">Select Year of Study:</label>
+                <select id="yearSelect" class="form-select" onchange="updateModuleOptions()">
+                    <option value="">-- Select Year --</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="moduleSelect" class="form-label">Select Module:</label>
+                <select id="moduleSelect" class="form-select" onchange="updateAssignmentOptions()">
+                    <option value="">-- Select Module --</option>
+                    <!-- Module options will be dynamically populated based on year selection -->
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="assignmentSelect" class="form-label">Select Assignment:</label>
+                <select id="assignmentSelect" class="form-select" onchange="loadSubmissions()">
+                    <option value="">-- Select Assignment --</option>
+                    <!-- Assignment options will be dynamically populated based on module selection -->
+                </select>
+            </div>
+        </form>
+
+        <!-- Table to display submitted videos -->
+        <div class="table-container">
+            <table class="table table-bordered table-striped" id="submissionsTable">
+                <thead class="table-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Student Name</th>
+                        <th>Submission Date</th>
+                        <th>Video Link</th>
+                        <th>Marks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Submitted videos will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Mock data for demo purposes
+        const modulesByYear = {
+            1: ['HMDC 121', 'HMDC 122'],
+            2: ['HMSC 122', 'HMSC 221'],
+            3: ['HMSC 221', 'HMSC 322']
+        };
+
+        const assignmentsByModule = {
+            'HMDC 121': ['Introduction to HMDC 121', 'Assignment 2 for HMDC 121'],
+            'HMSC 122': ['Overview of HMSC 122 Concepts', 'Assignment 2 for HMSC 122'],
+            'HMSC 221': ['Advanced Topics in HMSC 221', 'Assignment 2 for HMSC 221'],
+            'HMSC 322': ['Advanced HMSC Concepts', 'Assignment 2 for HMSC 322']
+        };
+
+        const submissions = {
+            'Introduction to HMDC 121': [
+                { student: 'Alice Johnson', date: '2024-10-12', video: 'https://example.com/video1', marks: 85 },
+                { student: 'Bob Smith', date: '2024-10-13', video: 'https://example.com/video2', marks: 80 }
+            ],
+            'Overview of HMSC 122 Concepts': [
+                { student: 'Charlie Brown', date: '2024-10-14', video: 'https://example.com/video3', marks: 90 }
+            ],
+            'Advanced Topics in HMSC 221': [
+                { student: 'Dave Wilson', date: '2024-10-15', video: 'https://example.com/video4', marks: 88 }
+            ]
+        };
+
+        // Update module dropdown based on selected year
+        function updateModuleOptions() {
+            const yearSelect = document.getElementById("yearSelect").value;
+            const moduleSelect = document.getElementById("moduleSelect");
+
+            moduleSelect.innerHTML = '<option value="">-- Select Module --</option>';
+
+            if (yearSelect) {
+                modulesByYear[yearSelect].forEach(module => {
+                    const option = document.createElement("option");
+                    option.value = module;
+                    option.text = module;
+                    moduleSelect.appendChild(option);
+                });
+            }
+
+            // Clear assignment options when year or module changes
+            document.getElementById("assignmentSelect").innerHTML = '<option value="">-- Select Assignment --</option>';
+        }
+
+        // Update assignment dropdown based on selected module
+        function updateAssignmentOptions() {
+            const moduleSelect = document.getElementById("moduleSelect").value;
+            const assignmentSelect = document.getElementById("assignmentSelect");
+
+            assignmentSelect.innerHTML = '<option value="">-- Select Assignment --</option>';
+
+            if (moduleSelect) {
+                assignmentsByModule[moduleSelect].forEach(assignment => {
+                    const option = document.createElement("option");
+                    option.value = assignment;
+                    option.text = assignment;
+                    assignmentSelect.appendChild(option);
+                });
+            }
+        }
+
+        // Load submissions based on selected assignment
+        function loadSubmissions() {
+            const assignmentSelect = document.getElementById("assignmentSelect").value;
+            const submissionsTable = document.getElementById("submissionsTable").getElementsByTagName('tbody')[0];
+
+            // Clear previous submissions
+            submissionsTable.innerHTML = '';
+
+            if (assignmentSelect && submissions[assignmentSelect]) {
+                submissions[assignmentSelect].forEach((submission, index) => {
+                    const row = submissionsTable.insertRow();
+
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5 = row.insertCell(4);
+
+                    cell1.innerHTML = index + 1;
+                    cell2.innerHTML = submission.student;
+                    cell3.innerHTML = submission.date;
+                    cell4.innerHTML = `<a href="${submission.video}" target="_blank">View Video</a>`;
+                    cell5.innerHTML = submission.marks;
+                });
+            } else {
+                const row = submissionsTable.insertRow();
+                const cell = row.insertCell(0);
+                cell.colSpan = 5;
+                cell.className = 'text-center';
+                cell.innerHTML = 'No submissions found.';
+            }
+        }
+    </script>
+</body>
+</html>

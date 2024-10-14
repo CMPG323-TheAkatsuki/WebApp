@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Admin Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: skyblue; /* Skyblue background */
+            color: #333;
+        }
+        h1 {
+            margin-top: 30px;
+            text-align: center;
+            color: #0c0c0c;
+        }
+        /* Vertical navigation tabs on the left */
+        .nav-tabs {
+            flex-direction: column;
+            width: 200px;
+        }
+        /* Align the tab content to the right of the vertical navigation */
+        .tab-content {
+            margin-left: 220px;
+        }
+        .form-section {
+            margin-top: 20px;
+        }
+        .btn-box {
+            margin-top: 20px;
+        }
+        .btn-box button {
+            margin-right: 10px;
+        }
+        #action-result-lecturer, #action-result-student {
+            margin-top: 20px;
+        }
+        .home-icon {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 40px; /* Adjust icon size */
+            cursor: pointer;
+            color: #080808;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Home Icon to redirect to Landing Page -->
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/home.png" alt="Home" class="home-icon" onclick="redirectToHome()">
+
+    <h1>User Administration Page</h1>
+
+    <div class="container mt-5 d-flex">
+
+        <!-- Vertical Nav tabs -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="Lecturer-tab" data-bs-toggle="tab" data-bs-target="#Lecturer" type="button" role="tab" aria-controls="Lecturer" aria-selected="false">Lecturer</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="Student-tab" data-bs-toggle="tab" data-bs-target="#Student" type="button" role="tab" aria-controls="Student" aria-selected="false">Student</button>
+            </li>
+        </ul>
+
+        <!-- Main Tab content -->
+        <div class="tab-content" id="myTabContent">
+            <!-- Home Tab Content -->
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="mt-4">Home Content</h3>
+                <p>Welcome, Administrator! You have the responsibility to Create, Read, Update, and Delete users, which may be either Lecturers or Students.</p>
+            </div>
+
+            <!-- Lecturer Tab Content -->
+            <div class="tab-pane fade" id="Lecturer" role="tabpanel" aria-labelledby="Lecturer-tab">
+                <h3 class="mt-4">Lecturer Management</h3>
+                <p>To manage Lecturer details for Reading and Updating, please search by User number.</p>
+
+                <!-- Search Form for Lecturer -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Lecturer by User number" id="search-lecturer">
+                    <button class="btn btn-success" type="button" onclick="searchUser('lecturer')">Go</button>
+                </div>
+
+                <!-- Lecturer Form -->
+                <form id="lecturerForm" class="form-section">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter name" id="lecturer-name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter username" id="lecturer-username" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="email" class="form-control" placeholder="Enter email" id="lecturer-email" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="tel" class="form-control" placeholder="Enter phone number" id="lecturer-phone" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter User number" id="lecturer-userNo" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="password" class="form-control" placeholder="Enter password" id="lecturer-password" required>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Lecturer Actions -->
+                <div class="btn-box">
+                    <button class="btn btn-primary" onclick="performAction('lecturer', 'add')">Add Lecturer</button>
+                    <button class="btn btn-primary" onclick="performAction('lecturer', 'update')">Update Lecturer</button>
+                    <button class="btn btn-primary" onclick="performAction('lecturer', 'read')">Read Lecturer</button>
+                    <button class="btn btn-danger" onclick="performAction('lecturer', 'delete')">Delete Lecturer</button>
+                </div>
+
+                <!-- Action result -->
+                <div id="action-result-lecturer"></div>
+            </div>
+
+            <!-- Student Tab Content -->
+            <div class="tab-pane fade" id="Student" role="tabpanel" aria-labelledby="Student-tab">
+                <h3 class="mt-4">Student Management</h3>
+                <p>To manage Student details for Reading and Updating, please search by User number.</p>
+
+                <!-- Search Form for Student -->
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search Student by User number" id="search-student">
+                    <button class="btn btn-success" type="button" onclick="searchUser('student')">Go</button>
+                </div>
+
+                <!-- Student Form -->
+                <form id="studentForm" class="form-section">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter name" id="student-name" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter username" id="student-username" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="email" class="form-control" placeholder="Enter email" id="student-email" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="tel" class="form-control" placeholder="Enter phone number" id="student-phone" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control" placeholder="Enter User number" id="student-userNo" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <input type="password" class="form-control" placeholder="Enter password" id="student-password" required>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Student Actions -->
+                <div class="btn-box">
+                    <button class="btn btn-primary" onclick="performAction('student', 'add')">Add Student</button>
+                    <button class="btn btn-primary" onclick="performAction('student', 'update')">Update Student</button>
+                    <button class="btn btn-primary" onclick="performAction('student', 'read')">Read Student</button>
+                    <button class="btn btn-danger" onclick="performAction('student', 'delete')">Delete Student</button>
+                </div>
+
+                <!-- Action result -->
+                <div id="action-result-student"></div>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        function redirectToHome() {
+            // Redirect to the landing page 
+            window.location.href = 'Landing Page.html'; 
+        }
+
+        function performAction(role, action) {
+            let actionResultDiv = document.getElementById(`action-result-${role}`);
+            
+            switch(action) {
+                case 'add':
+                    actionResultDiv.innerHTML = `<p class="text-success">${role.charAt(0).toUpperCase() + role.slice(1)} Added!</p>`;
+                    break;
+                case 'update':
+                    actionResultDiv.innerHTML = `<p class="text-info">${role.charAt(0).toUpperCase() + role.slice(1)} Updated!</p>`;
+                    break;
+                case 'read':
+                    actionResultDiv.innerHTML = `<p class="text-primary">Reading ${role.charAt(0).toUpperCase() + role.slice(1)} Data...</p>`;
+                    break;
+                case 'delete':
+                    actionResultDiv.innerHTML = `<p class="text-danger">${role.charAt(0).toUpperCase() + role.slice(1)} Deleted!</p>`;
+                    break;
+            }
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Assignment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: skyblue;
+        }
+        h1 {
+            margin-top: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            margin-top: 40px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .home-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+        .home-icon img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Home icon that redirects to the landing page -->
+    <a href="Landing Page.html" class="home-icon">
+        <img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home">
+    </a>
+
+    <div class="container">
+        <h1>Create a New Assignment</h1>
+
+        <!-- Form for creating a new assignment -->
+        <div class="form-container">
+            <form id="createAssignmentForm">
+                <!-- Module Code -->
+                <div class="form-group">
+                    <label for="moduleCode">Module Code</label>
+                    <input type="text" class="form-control" id="moduleCode" placeholder="Enter module code (e.g., HMDC 121)" required>
+                </div>
+
+                <!-- Assignment Description -->
+                <div class="form-group">
+                    <label for="assignmentDescription">Assignment Description</label>
+                    <textarea class="form-control" id="assignmentDescription" rows="3" placeholder="Enter assignment description" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="openDate">Open Date</label>
+                    <input type="date" class="form-control" id="openDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="submissionDate">Submission Date</label>
+                    <input type="date" class="form-control" id="submissionDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="marks">Marks</label>
+                    <input type="number" class="form-control" id="marks" placeholder="Enter marks" required>
+                </div>
+                <div class="form-group">
+                    <label for="fileSize">File Size (MB)</label>
+                    <input type="number" class="form-control" id="fileSize" placeholder="Enter file size in MB" required>
+                </div>
+
+                <!-- Button to add the assignment -->
+                <button type="submit" class="btn btn-success mt-3">Create Assignment</button>
+            </form>
+        </div>
+
+        <!-- Message after assignment creation -->
+        <div id="message" class="mt-3"></div>
+    </div>
+
+    <script>
+        document.getElementById("createAssignmentForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            // Get form values
+            const moduleCode = document.getElementById("moduleCode").value;
+            const assignmentDescription = document.getElementById("assignmentDescription").value;
+            const openDate = document.getElementById("openDate").value;
+            const submissionDate = document.getElementById("submissionDate").value;
+            const marks = document.getElementById("marks").value;
+            const fileSize = document.getElementById("fileSize").value;
+
+            // Get existing assignments from localStorage or create a new array
+            let assignments = JSON.parse(localStorage.getItem("assignments")) || [];
+
+            // Add new assignment to the array
+            const newAssignment = {
+                moduleCode: moduleCode,
+                description: assignmentDescription,
+                openDate: openDate,
+                submissionDate: submissionDate,
+                marks: marks,
+                fileSize: fileSize
+            };
+            assignments.push(newAssignment);
+
+            // Save updated assignments back to localStorage
+            localStorage.setItem("assignments", JSON.stringify(assignments));
+
+            // Show success message
+            document.getElementById("message").innerHTML = `<p class="text-success">Assignment created successfully!</p>`;
+
+            // Clear the form
+            document.getElementById("createAssignmentForm").reset();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

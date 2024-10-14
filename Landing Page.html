@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: skyblue; 
+            color: #333;
+        }
+        h1 {
+            margin-top: 30px;
+            text-align: center;
+            color: #0e0d0d;
+        }
+        .login-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        /* Vertical navigation tabs on the left */
+        .nav-tabs {
+            flex-direction: column;
+            width: 200px;
+        }
+        /* Align the tab content to the right of the vertical navigation */
+        .tab-content {
+            margin-left: 220px;
+        }
+        /* Disabled tab style */
+        .disabled {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with title and login button -->
+    <h1>Human Movement Sciences</h1>
+    <!-- Login button -->
+    <a href="login.html" class="btn btn-primary login-btn" id="loginButton">Login</a>
+
+    <div class="container mt-5 d-flex">
+
+        <!-- Vertical Nav tabs -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="home">
+                <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Home</button>
+            </li>
+            <li class="nav-item" role="UserAdmin">
+                <a class="nav-link disabled" id="UserAdmin" href="UserAdmin.html" role="tab" aria-controls="UserAdmin" aria-selected="false">User Admin</a>
+            </li>
+            <li class="nav-item" role="ListAssignments">
+                <a class="nav-link disabled" id="ListAssignment" href="ListAssignments.html" role="tab" aria-controls="ListAssignment" aria-selected="false">List Assignment</a>
+            </li>
+            <li class="nav-item" role="CreateAssignments">
+                <a class="nav-link disabled" id="CreateAssignment" href="CreateAssignments.html" role="tab" aria-controls="CreateAssignment" aria-selected="false">Create Assignment</a>
+            </li>
+            <li class="nav-item" role="AssignmentSubmission">
+                <a class="nav-link disabled" id="AssignmentSubmission" href="AssignmentSubmission.html" role="tab" aria-controls="AssignmentSubmission" aria-selected="false">Submit Assignment</a>
+            </li>
+            <li class="nav-item" role="VideoFeedback">
+                <a class="nav-link disabled" id="VideoFeedback" href="VideoFeedback.html" role="tab" aria-controls="VideoFeedback" aria-selected="false">Video Feedback</a>
+            </li>
+        </ul>
+
+        <!-- Main Tab content -->
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3 class="mt-4">Home Content</h3>
+                <p>Welcome to the Human Movement Sciences platform!</p>
+            </div>
+        </div>
+        
+    </div>
+
+    <script>
+        // Function to enable all tabs except the home tab
+        function enableTabs() {
+            const tabs = document.querySelectorAll('.nav-link.disabled');
+            tabs.forEach(tab => {
+                tab.classList.remove('disabled');
+                tab.style.pointerEvents = 'auto'; 
+            });
+        }
+
+        // On page load, check if user is logged in
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn === 'true') {
+                enableTabs();
+                document.getElementById('loginButton').style.display = 'none'; // Hide login button if logged in
+            } else {
+                document.getElementById('loginButton').style.display = 'block'; // Ensure login button is visible
+            }
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
