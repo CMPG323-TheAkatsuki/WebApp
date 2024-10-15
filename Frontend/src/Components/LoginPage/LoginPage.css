@@ -1,0 +1,107 @@
+/* Reset default browser margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Makes width calculations easier */
+}
+
+/* Ensure html and body take the full height */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Landing page container */
+.landing-container {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 5% 2%; /* Adjusted for better spacing */
+    background-color: #B2E0F9; /* Baby blue background color */
+    width: 100%; /* Ensures the container takes the full width */
+    min-height: 100vh; /* Ensures the container fills at least the full height of the viewport */
+    display: flex; /* Enables flexbox for centering */
+    flex-direction: column; /* Stacks children vertically */
+    justify-content: center; /* Centers children vertically */
+    align-items: center; /* Centers children horizontally */
+    margin: 0; /* Ensures there's no margin */
+}
+
+/* Header styles */
+.landing-header {
+    background-color: #282c34;
+    color: white;
+    padding: 5% 5%; /* Responsive padding */
+    position: sticky; /* Keeps the header at the top while scrolling */
+    top: 0; /* Position it at the top */
+    z-index: 1000; /* Ensure it appears above other content */
+}
+
+.landing-header h1 {
+    font-size: 4vw; /* Responsive font size */
+    margin-bottom: 20px;
+}
+
+.landing-header p {
+    font-size: 2vw; /* Responsive font size */
+    margin-bottom: 3%; /* Responsive margin */
+}
+
+.btn-primary {
+    background-color: #61dafb;
+    color: #282c34;
+    padding: 1% 3%; /* Responsive padding */
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 2vw; /* Responsive font size */
+    cursor: pointer;
+    float: right; /* Float the button to the right */
+}
+
+.btn-primary:hover {
+    background-color: #21a1f1;
+}
+
+/* Features section */
+.features-section {
+    padding: 5% 2%; /* Responsive padding */
+}
+
+.features-section h2 {
+    font-size: 3.5vw; /* Responsive font size */
+    margin-bottom: 3%; /* Responsive margin */
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap; /* Allows items to wrap to the next line */
+    justify-content: space-around; /* Centers the feature cards */
+}
+
+.feature-card {
+    background-color: #f4f4f4;
+    padding: 2%; /* Responsive padding */
+    border-radius: 10px;
+    width: calc(30% - 20px); /* Responsive width with space for margins */
+    min-width: 250px; /* Minimum width for smaller screens */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px; /* Space between feature cards */
+}
+
+.feature-card h3 {
+    font-size: 2.5vw; /* Responsive font size */
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+    font-size: 1.5vw; /* Responsive font size */
+}
+
+/* Footer styles */
+.landing-footer {
+    background-color: #282c34;
+    color: white;
+    padding: 2% 0; /* Responsive padding */
+    margin-top: 40px;
+}
