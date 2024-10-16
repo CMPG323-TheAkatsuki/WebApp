@@ -113,17 +113,32 @@ html, body {
 }
 
 /* Sign out button */
-.btn-signout {
-    background-color: #61dafb;
+.assignments-header {
+    display: flex; /* Use flexbox to arrange items in a row */
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+    padding: 10px;
+    background-color: #f2b880; /* Light orange background */
     color: #282c34;
-    padding: 4.5px 13.5px; /* Reduced padding by 10% */
-    border: none;
-    border-radius: 4.5px; /* Reduced border-radius by 10% */
-    cursor: pointer;
 }
 
-.btn-signout:hover {
-    background-color: #21a1f1;
+.button-group {
+    display: flex; /* Use flexbox for button alignment */
+    gap: 10px; /* Add space between buttons */
 }
+
+.btn-goto-assignments {
+    background-color: #61dafb; /* Button background color */
+    color: #282c34; /* Button text color */
+    padding: 9px 18px; /* Adjust padding */
+    border: none; /* No border */
+    border-radius: 4.5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.btn-goto-assignments:hover {
+    background-color: #21a1f1; /* Darken color on hover */
+}
+
 
 

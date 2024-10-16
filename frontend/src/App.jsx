@@ -4,6 +4,8 @@ import LandingPage from './Components/LandingPage/LandingPage';
 import LoginPage from './Components/LoginPage/Login'; // Import the LoginPage component
 import UserAdminPage from './Components/UserAdminPage/UserAdmin';
 import AssignmentsPage from './Components/ListAssignmentPage/ListAssignments';
+import ListVideoAssignments from './Components/ListVideoAssignmentPage/ListVideoAssignment'; // Import the new component
+
 
 
 
@@ -15,6 +17,7 @@ const App = () => {
                 <Route path="/login" element={<LoginPage />} /> {/* Add this route for the login page */}
                 <Route path="/admin" element={<UserAdminPage />} />
                 <Route path="/list-assignments" element={<AssignmentsPage />} />
+                <Route path="/list-video-assignments" element={<ListVideoAssignments />} /> {/* New route */}
 
 
             </Routes>

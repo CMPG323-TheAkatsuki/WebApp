@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import './ListAssignments.css';
 
 const ListAssignments = () => {
@@ -10,6 +11,7 @@ const ListAssignments = () => {
 
     const [selectedAssignment, setSelectedAssignment] = useState(null);
     const [formData, setFormData] = useState({ title: '', description: '' });
+    const navigate = useNavigate(); // Initialize navigate
 
     const handleAssignmentClick = (assignment) => {
         setSelectedAssignment(selectedAssignment?.id === assignment.id ? null : assignment);
@@ -37,11 +39,27 @@ const ListAssignments = () => {
         setFormData({ title: '', description: '' }); // Reset form
     };
 
+    // Function to handle sign out and navigate to login page
+    const handleSignOut = () => {
+        // Perform any necessary sign-out logic (like clearing tokens if used)
+        navigate('/login'); // Navigate to login page
+    };
+
+    // Function to navigate to ListVideoAssignments
+    const handleGoToVideoAssignments = () => {
+        navigate('/list-video-assignments');
+    };
+
     return (
         <div className="assignments-container">
             <header className="assignments-header">
                 <h1>HMS</h1>
-                <button className="btn-signout">Sign Out</button>
+                <div className="button-group">
+                    <button className="btn-goto-assignments" onClick={handleGoToVideoAssignments}>
+                        Go to Video Assignments
+                    </button>
+                    <button className="btn-signout" onClick={handleSignOut}>Sign Out</button>
+                </div>
             </header>
 
             <div className="assignments-list-container">
@@ -93,8 +111,6 @@ const ListAssignments = () => {
                     </button>
                 </div>
             </div>
-
-           
         </div>
     );
 };
