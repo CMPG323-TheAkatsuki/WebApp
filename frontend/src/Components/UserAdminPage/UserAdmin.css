@@ -1,0 +1,104 @@
+/* Reset default browser margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure full height and width */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Background gradient applied to body */
+body {
+    background: linear-gradient(to bottom right, #B2E0F9, #f2b880); /* Gradient background */
+}
+
+/* Container for user admin page */
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    height: 100vh; /* Fill the full viewport height */
+    width: 100vw; /* Fill the full viewport width */
+}
+
+/* Header styles */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(242, 184, 128, 0.8); /* Light orange background with transparency */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header title */
+.admin-header h1 {
+    font-size: 2rem;
+    color: #282c34; /* Dark color for text */
+}
+
+/* Button to add user */
+.btn-add {
+    background-color: #61dafb;
+    color: #282c34;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* User table styles */
+.user-table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    width: 100%;
+    flex-grow: 1; /* Allow the table to grow and take available space */
+}
+
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Button styles for edit and delete */
+.btn-edit, .btn-delete {
+    background-color: #61dafb;
+    color: #282c34;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn-edit:hover, .btn-delete:hover {
+    background-color: #21a1f1;
+}
+
+/* Delete button styles */
+.btn-delete {
+    background-color: #ff4c4c; /* Red for delete */
+}
+
+.btn-delete:hover {
+    background-color: #ff2b2b; /* Darker red on hover */
+}
+
+.user-table th, .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.user-table th {
+    background-color: #f2b880; /* Light orange for header */
+    color: #282c34; /* Dark color for text */
+}

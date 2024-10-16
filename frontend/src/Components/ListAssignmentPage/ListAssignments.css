@@ -1,0 +1,129 @@
+/* Reset default browser margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure full height and width */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Assignments container */
+.assignments-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #B2E0F9; /* Baby blue background */
+    margin-top: 54px; /* Reduced margin by 10% */
+}
+
+/* Floating header styles */
+.assignments-header {
+    background-color: #f2b880; /* Light orange background */
+    color: #282c34;
+    width: 100%;
+    padding: 4.5px; /* Reduced padding by 10% */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1.8px 3.6px rgba(0, 0, 0, 0.1); /* Reduced shadow by 10% */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensure it floats above content */
+}
+
+/* Add padding to the content to prevent overlap with the header and footer */
+.assignments-list-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: flex-start; /* Align to the top */
+    width: 100%;
+    padding: 18px 9px 9px; /* Further reduced padding */
+    padding-top: 27px; /* Further reduced padding-top */
+    padding-bottom: 54px; /* Adjust padding-bottom to account for footer */
+    margin-top: 54px; /* Adjust margin-top to account for header */
+    height: calc(100vh - 108px); /* Adjust height to fit within viewport minus header and footer */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+/* Assignment item styles */
+.assignment-item {
+    background-color: #fff;
+    margin: 9px 0; /* Reduced margin by 10% */
+    padding: 13.5px; /* Reduced padding by 10% */
+    border-radius: 9px; /* Reduced border-radius by 10% */
+    box-shadow: 0 3.6px 7.2px rgba(0, 0, 0, 0.1); /* Reduced shadow by 10% */
+    cursor: pointer;
+    transition: transform 0.2s;
+    display: flex;
+    justify-content: space-between; /* Space between title and delete button */
+    align-items: center;
+}
+
+/* Hover effect for assignment items */
+.assignment-item:hover {
+    transform: scale(1.02);
+}
+
+/* Assignment title styles */
+.assignment-title {
+    flex: 1; /* Allow title to take available space */
+    cursor: pointer; /* Cursor indicates clickable */
+}
+
+/* Assignment description styles */
+.assignment-description {
+    margin-top: 9px; /* Reduced margin-top by 10% */
+    color: #666;
+}
+
+/* Assignment form styles */
+.assignment-form {
+    margin-top: 18px; /* Reduced margin-top by 10% */
+}
+
+.assignment-form input,
+.assignment-form textarea {
+    width: 100%;
+    padding: 9px; /* Reduced padding by 10% */
+    margin-top: 9px; /* Reduced margin-top by 10% */
+    border: 1px solid #ccc;
+    border-radius: 4.5px; /* Reduced border-radius by 10% */
+}
+
+/* Add button styles */
+.add-button {
+    background-color: #61dafb;
+    color: #282c34;
+    padding: 9px 18px; /* Reduced padding by 10% */
+    border: none;
+    border-radius: 4.5px; /* Reduced border-radius by 10% */
+    cursor: pointer;
+    margin-top: 9px; /* Reduced margin-top by 10% */
+}
+
+.add-button:hover {
+    background-color: #21a1f1;
+}
+
+/* Sign out button */
+.btn-signout {
+    background-color: #61dafb;
+    color: #282c34;
+    padding: 4.5px 13.5px; /* Reduced padding by 10% */
+    border: none;
+    border-radius: 4.5px; /* Reduced border-radius by 10% */
+    cursor: pointer;
+}
+
+.btn-signout:hover {
+    background-color: #21a1f1;
+}
+
+
