@@ -65,3 +65,4 @@
 {"level":"error","message":"JWT verification failed: jwt expired"}
 {"level":"error","message":"JWT verification failed: invalid token"}
 {"level":"error","message":"Connection failed: Password cannot be empty"}
+{"level":"error","message":"Connection failed: Password cannot be empty"}

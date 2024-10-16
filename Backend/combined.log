@@ -848,3 +848,20 @@
 {"level":"info","message":"Connected to database!"}
 {"level":"info","message":"Server is running on port 5000"}
 {"level":"info","message":"User 112233445 logged in successfully."}
+{"level":"error","message":"Connection failed: Password cannot be empty"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"User 112233445 logged in successfully."}
+{"level":"info","message":"User 112233445 logged in successfully."}
+{"level":"warn","message":"User not found for user_number: "}
+{"level":"warn","message":"User not found for user_number: "}
+{"level":"info","message":"User 112233445 logged in successfully."}
+{"level":"warn","message":"Failed login for user_number: 112233445"}
+{"level":"warn","message":"Failed login for user_number: 112233445"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
+{"level":"warn","message":"User not found for user_number: 112233442"}
