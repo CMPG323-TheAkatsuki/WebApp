@@ -871,3 +871,7 @@
 {"level":"info","message":"Connected to database!"}
 {"level":"info","message":"Server is running on port 5000"}
 {"level":"info","message":"User 123456789 logged in successfully."}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"User 123456789 logged in successfully."}

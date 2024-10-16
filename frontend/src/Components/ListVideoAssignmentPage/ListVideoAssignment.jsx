@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ListVideoAssignment.css';
 import { useNavigate } from 'react-router-dom';
+import { getAllAssignments } from '../../services/api'; // Import the API function
 
 const ListVideoAssignments = () => {
+  const [assignments, setAssignments] = useState([]);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
   const [reviewText, setReviewText] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -11,26 +13,18 @@ const ListVideoAssignments = () => {
 
   const navigate = useNavigate();
 
-  const assignments = [
-    { id: 1, title: 'Assignment 1' },
-    { id: 2, title: 'Assignment 2' },
-    { id: 3, title: 'Assignment 3' },
-  ];
+  useEffect(() => {
+    const fetchAssignments = async () => {
+      try {
+        const data = await getAllAssignments();
+        setAssignments(data);
+      } catch (error) {
+        console.error('Error fetching assignments:', error);
+      }
+    };
 
-  const submissions = {
-    1: [
-      { url: 'http://submission1.com', userNumber: '12345678' },
-      { url: 'http://submission2.com', userNumber: '87654321' },
-    ],
-    2: [
-      { url: 'http://submission3.com', userNumber: '23456789' },
-      { url: 'http://submission4.com', userNumber: '98765432' },
-    ],
-    3: [
-      { url: 'http://submission5.com', userNumber: '34567890' },
-      { url: 'http://submission6.com', userNumber: '09876543' },
-    ],
-  };
+    fetchAssignments();
+  }, []);
 
   const handleSignOut = () => {
     navigate('/login');
@@ -79,9 +73,9 @@ const ListVideoAssignments = () => {
           <ul>
             {assignments.map((assignment) => (
               <li
-                key={assignment.id}
+                key={assignment._id}
                 className="assignment-item"
-                onClick={() => setSelectedAssignment(assignment.id)}
+                onClick={() => setSelectedAssignment(assignment._id)}
               >
                 {assignment.title}
               </li>
@@ -92,7 +86,7 @@ const ListVideoAssignments = () => {
         <div className="submissions-section">
           {selectedAssignment ? (
             <>
-              <h3>Submissions for {assignments.find(a => a.id === selectedAssignment).title}</h3>
+              <h3>Submissions for {assignments.find(a => a._id === selectedAssignment).title}</h3>
               <ul>
                 {submissions[selectedAssignment].map(({ url, userNumber }, index) => (
                   <li key={index}>

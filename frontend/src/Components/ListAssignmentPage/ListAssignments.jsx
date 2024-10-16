@@ -1,17 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import './ListAssignments.css';
+import { getAllAssignments } from '../../services/api'; // Import the API function
 
 const ListAssignments = () => {
-    const [assignments, setAssignments] = useState([
-        { id: 1, title: 'Assignment 1', description: 'Description for Assignment 1' },
-        { id: 2, title: 'Assignment 2', description: 'Description for Assignment 2' },
-        { id: 3, title: 'Assignment 3', description: 'Description for Assignment 3' },
-    ]);
-
+    const [assignments, setAssignments] = useState([]);
     const [selectedAssignment, setSelectedAssignment] = useState(null);
     const [formData, setFormData] = useState({ title: '', description: '' });
     const navigate = useNavigate(); // Initialize navigate
+
+    useEffect(() => {
+        const fetchAssignments = async () => {
+            try {
+                const data = await getAllAssignments();
+                setAssignments(data);
+            } catch (error) {
+                console.error('Error fetching assignments:', error);
+            }
+        };
+
+        fetchAssignments();
+    }, []);
 
     const handleAssignmentClick = (assignment) => {
         setSelectedAssignment(selectedAssignment?.id === assignment.id ? null : assignment);
