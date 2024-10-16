@@ -814,3 +814,37 @@
 {"level":"info","message":"User 112233445 logged in successfully."}
 {"level":"info","message":"User 112233445 logged in successfully."}
 {"level":"info","message":"User 112233445 logged in successfully."}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Connected to database!"}
+{"level":"error","message":"Database connection error: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","stack":"MongooseError: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.\n    at NativeConnection.createClient (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\connection.js:225:11)\n    at NativeConnection.openUri (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\connection.js:835:34)\n    at Mongoose.connect (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\mongoose.js:447:15)\n    at Object.<anonymous> (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\index.js:147:10)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)\n    at node:internal/main/run_main_module:17:47"}
+{"level":"error","message":"Database connection error: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","stack":"MongooseError: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.\n    at NativeConnection.createClient (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\connection.js:225:11)\n    at NativeConnection.openUri (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\connection.js:835:34)\n    at Mongoose.connect (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\mongoose.js:447:15)\n    at Object.<anonymous> (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\index.js:147:10)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)\n    at node:internal/main/run_main_module:17:47"}
+{"level":"error","message":"Database connection error: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.","stack":"MongooseError: The `uri` parameter to `openUri()` must be a string, got \"undefined\". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.\n    at NativeConnection.createClient (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\drivers\\node-mongodb-native\\connection.js:225:11)\n    at NativeConnection.openUri (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\connection.js:835:34)\n    at Mongoose.connect (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\node_modules\\mongoose\\lib\\mongoose.js:447:15)\n    at Object.<anonymous> (C:\\Users\\kyleo\\OneDrive\\Documents\\GitHub\\WebApp\\Backend\\index.js:142:10)\n    at Module._compile (node:internal/modules/cjs/loader:1105:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1159:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:77:12)\n    at node:internal/main/run_main_module:17:47"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"warn","message":"User not found for user_number: undefined"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"Connected to database!"}
+{"level":"info","message":"Server is running on port 5000"}
+{"level":"info","message":"User 112233445 logged in successfully."}

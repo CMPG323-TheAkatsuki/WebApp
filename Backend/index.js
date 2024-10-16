@@ -69,6 +69,15 @@ function authorizeRoles(...roles) {
 }
 
 // Route to authenticate a user and generate a JWT
+// index.js
+
+// Route to authenticate a user and generate a JWT
+// index.js
+
+// Route to authenticate a user and generate a JWT
+// index.js
+
+// Route to authenticate a user and generate a JWT
 app.post('/login', async (req, res) => {
     const { user_number, password } = req.body;
 

@@ -1,25 +1,46 @@
-import React from 'react';
-import './Login.css'; // Ensure this is correctly linked
+// src/components/LoginPage/Login.jsx
+import React, { useState } from 'react';
+import { loginUser } from '../../services/api'; // Corrected import path
 
-const LoginPage = () => {
+const Login = () => {
+    const [user_number, setUserNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await loginUser({ user_number, password });
+            console.log('Login successful:', response);
+            // Handle successful login (e.g., store token, redirect)
+        } catch (error) {
+            console.error('Error logging in:', error);
+            setError('Invalid credentials');
+        }
+    };
+
     return (
-        <div className="login-container">
-            <div className="login-box">
-                <h2>Login</h2>
-                <form>
-                    <div className="input-group">
-                        <label htmlFor="user-number">User Number</label>
-                        <input type="text" id="user-number" placeholder="Enter your user number" required />
-                    </div>
-                    <div className="input-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" placeholder="Enter your password" required />
-                    </div>
-                    <button type="submit" className="btn-login">Login</button>
-                </form>
+        <form onSubmit={handleSubmit}>
+            <div>
+                <label>User Number:</label>
+                <input
+                    type="text"
+                    value={user_number}
+                    onChange={(e) => setUserNumber(e.target.value)}
+                />
             </div>
-        </div>
+            <div>
+                <label>Password:</label>
+                <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
+            {error && <p>{error}</p>}
+            <button type="submit">Login</button>
+        </form>
     );
 };
 
-export default LoginPage;
+export default Login;
