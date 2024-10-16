@@ -78,6 +78,9 @@ function authorizeRoles(...roles) {
 // index.js
 
 // Route to authenticate a user and generate a JWT
+// index.js
+
+// Route to authenticate a user and generate a JWT
 app.post('/login', async (req, res) => {
     const { user_number, password } = req.body;
 
@@ -89,10 +92,6 @@ app.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        // Debugging logs to check password comparison
-        console.log("Received password:", password);
-        console.log("Stored hashed password:", user.password);
-
         const isMatch = bcrypt.compareSync(password, user.password);
 
         if (!isMatch) {
@@ -102,7 +101,7 @@ app.post('/login', async (req, res) => {
 
         const token = jwt.sign({ user_number: user.user_number }, JWT_SECRET, { expiresIn: '1h' });
         logger.info(`User ${user_number} logged in successfully.`);
-        res.json({ token });
+        res.json({ token, role: user.role }); // Include the user's role in the response
     } catch (error) {
         logger.error(`Error during login for user_number: ${user_number} - ${error.message}`);
         res.status(500).json({ message: 'An error occurred during login' });

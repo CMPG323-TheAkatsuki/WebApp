@@ -13,3 +13,14 @@ export const loginUser = async (userData) => {
         throw error;
     }
 };
+
+// Get all users API
+export const getAllUsers = async () => {
+    try {
+        const response = await axiosInstance.get(`${API_URL}/users`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching users:', error);
+        throw error;
+    }
+};

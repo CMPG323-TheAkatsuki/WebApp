@@ -14,8 +14,12 @@ const Login = () => {
         try {
             const response = await loginUser({ user_number, password });
             console.log('Login successful:', response);
-            // Navigate to the ListAssignments page upon successful login
-            navigate('/list-assignments');
+            // Check the user's role and navigate accordingly
+            if (response.role === 'admin') {
+                navigate('/admin');
+            } else {
+                navigate('/list-assignments');
+            }
         } catch (error) {
             console.error('Error logging in:', error);
             setError('Invalid credentials');
