@@ -1,0 +1,78 @@
+/* Reset default browser margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure full height and width */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* Container for login */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #B2E0F9; /* Baby blue background */
+}
+
+/* Box for login form */
+.login-box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+/* Headline */
+.login-box h2 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #282c34; /* Dark color for text */
+}
+
+/* Input group */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Labels */
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input fields */
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Login button */
+.btn-login {
+    background-color: #61dafb; /* Light blue */
+    color: #282c34; /* Dark color for text */
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.btn-login:hover {
+    background-color: #21a1f1; /* Darker blue */
+}

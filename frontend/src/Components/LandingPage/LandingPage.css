@@ -12,50 +12,60 @@ html, body {
     overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Landing page container */
-.landing-container {
+body {
     font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 5% 2%; /* Adjusted for better spacing */
-    background-color: #B2E0F9; /* Baby blue background color */
-    width: 100%; /* Ensures the container takes the full width */
-    min-height: 100vh; /* Ensures the container fills at least the full height of the viewport */
-    display: flex; /* Enables flexbox for centering */
-    flex-direction: column; /* Stacks children vertically */
-    justify-content: flex-start; /* Aligns children to the start */
-    align-items: center; /* Centers children horizontally */
-    margin: 0; /* Ensures there's no margin */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes up the full viewport height */
 }
 
-/* Header styles */
+/* Landing page container */
+.landing-container {
+    flex-grow: 1; /* Ensures this section takes up remaining space */
+    width: 100vw; /* Ensures the container takes the full width */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #B2E0F9; /* Baby blue background color */
+    padding: 100px 20px; /* Padding to account for the fixed header */
+    box-sizing: border-box; /* Ensure padding is included in width calculations */
+}
+
+/* Fixed header styles */
 .landing-header {
     background-color: #282c34;
     color: white;
-    padding: 5% 5%; /* Responsive padding */
-    position: sticky; /* Makes header sticky */
-    top: 0; /* Positions the header at the top */
-    z-index: 1000; /* Ensures header stays above other content */
+    width: 100%; /* Makes header span the full width of the screen */
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-align: left;
+    z-index: 1000; /* Ensures the header floats on top of everything */
 }
 
 .landing-header h1 {
-    font-size: 4vw; /* Responsive font size */
-    margin-bottom: 20px;
+    font-size: 2.5rem;
 }
 
 .landing-header p {
-    font-size: 2vw; /* Responsive font size */
-    margin-bottom: 3%; /* Responsive margin */
+    font-size: 0.9rem;
 }
 
 .btn-primary {
     background-color: #61dafb;
     color: #282c34;
-    padding: 1% 3%; /* Responsive padding */
+    padding: 10px 20px;
     border: none;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 2vw; /* Responsive font size */
+    font-size: 1rem;
     cursor: pointer;
+    position: absolute;
+    top: 50%; /* Vertically center the button in the header */
+    right: 20px; /* Align to the right */
+    transform: translateY(-50%);
 }
 
 .btn-primary:hover {
@@ -64,43 +74,50 @@ html, body {
 
 /* Features section */
 .features-section {
-    padding: 5% 2%; /* Responsive padding */
+    padding: 100px 20px 40px; /* Space for header */
+    width: 100vw; /* Ensure content spans full width */
+    text-align: center;
+    flex-grow: 1; /* Ensures this section stretches to push footer down if needed */
 }
 
 .features-section h2 {
-    font-size: 3.5vw; /* Responsive font size */
-    margin-bottom: 3%; /* Responsive margin */
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
 .features {
     display: flex;
-    flex-wrap: wrap; /* Allows items to wrap to the next line */
-    justify-content: space-around; /* Centers the feature cards */
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%; /* Ensure features span full width */
 }
 
 .feature-card {
     background-color: #f4f4f4;
-    padding: 2%; /* Responsive padding */
+    padding: 20px;
     border-radius: 10px;
-    width: calc(30% - 20px); /* Responsive width with space for margins */
+    width: calc(30% - 20px); /* Responsive width */
     min-width: 250px; /* Minimum width for smaller screens */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin: 10px; /* Space between feature cards */
+    margin: 10px;
 }
 
 .feature-card h3 {
-    font-size: 2.5vw; /* Responsive font size */
-    margin-bottom: 15px;
+    font-size: 1.0rem;
 }
 
 .feature-card p {
-    font-size: 1.5vw; /* Responsive font size */
+    font-size: 1rem;
 }
 
 /* Footer styles */
 .landing-footer {
     background-color: #282c34;
     color: white;
-    padding: 2% 0; /* Responsive padding */
-    margin-top: 40px;
+    width: 100%;
+    padding: 2% 0;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
